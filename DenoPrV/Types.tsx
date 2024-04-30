@@ -1,4 +1,4 @@
-export type Create_Tas = {
+export type Create_Task = {
   NameTask: string;
   States: States;
 };
