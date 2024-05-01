@@ -8,9 +8,15 @@ const Page: FunctionComponent = () => {
 
   return (
     <div>
-      <button class="buttonCreate">Create</button>
-
-      <div class="Rectangle">To Do</div>
+      <div class="buttonForm">
+        <button
+          onClick={() => {
+            <form></form>;
+          }}
+        >
+          Create
+        </button>
+      </div>
     </div>
   );
 };
