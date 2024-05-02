@@ -1,29 +1,35 @@
 import { FunctionComponent } from "preact";
-import { useState } from "preact/hooks";
-import { Create_Task } from "../Types.ts";
-import { useRef } from "preact/hooks";
+import FormButtonComponent from "../components/FormButtonComponent.tsx";
 
 const Page: FunctionComponent = () => {
-  const [task, setTask] = useState<Create_Task[]>([]);
-
-  const ref = useRef<HTMLDialogElement>();
+  const showInformation = () => {
+    return (
+      <>
+        <ul>
+          <li>({})</li>
+        </ul>
+      </>
+    );
+  };
 
   return (
     <div class="boxPage">
       <div class="buttonForm">
-        <button
-          onClick={() => {
-            ref.current?.showModal();
-          }}
-        >
-          Create
-        </button>
+        <FormButtonComponent />
       </div>
       <div class="spaceBtwColumns">
-        <div class="column">To Do</div>
-        <div class="column">In Progress</div>
-        <div class="column">In Review</div>
-        <div class="column">Done</div>
+        <div class="column">
+          <h2>To Do</h2>
+        </div>
+        <div class="column">
+          <h2>In Progress</h2>
+        </div>
+        <div class="column">
+          <h2>In Review</h2>
+        </div>
+        <div class="column">
+          <h2>Done</h2>
+        </div>
       </div>
     </div>
   );
