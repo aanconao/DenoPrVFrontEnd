@@ -1,27 +1,27 @@
 import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
-import { Create_Task } from "../Types.ts";
-import { States } from "../Types.ts";
+import { Task, TaskStates } from "../Types.ts";
 
-const FormButtonComponent: FunctionComponent = () => {
+type Prop = {
+  propTask: (newTask: Task) => void;
+};
+
+const FormButtonComponent: FunctionComponent<Prop> = ({ propTask }) => {
   const [dialog, setDialog] = useState<boolean>(false);
-  const [name, setName] = useState<string>("");
-  const [state, setState] = useState<States>();
+  const [taskName, setTaskName] = useState<string>("");
+  const [taskState, setTaskState] = useState<TaskStates>(TaskStates.TO_DO);
 
   const closeDialog = () => {
-    setDialog(!dialog);
+    setDialog(false);
   };
 
-  const CreateTask = () => {
-    const newTask: Create_Task = {
-      nameTask: name,
-      states: {
-        To_Do: [],
-        In_Progress: [],
-        In_Review: [],
-        Done: [],
-      },
+  const createNewTask = () => {
+    const newTask: Task = {
+      nameTask: taskName,
+      states: taskState,
     };
+    propTask(newTask);
+    closeDialog();
   };
 
   /**
@@ -41,20 +41,25 @@ const FormButtonComponent: FunctionComponent = () => {
             <form method="dialog">
               <label>
                 Name Task
-                <input type="text" value={name} />
+                <input
+                  type="text"
+                  value={taskName}
+                  onInput={(e) => setTaskName(taskName)}
+                />
               </label>
             </form>
 
             <label>States</label>
-            <select>
-              <option value="To_Do">To Do</option>
-              <option value="In_Progess">In Progress</option>
-              <option value="In_Review">In Review</option>
-              <option value="Done">Done</option>
+            <select value={taskState} onChange={(e) => setTaskState(taskState)}>
+              {Object.values(TaskStates).map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
             </select>
 
             <div class="buttonCloseForm">
-              <button onClick={() => setDialog(false)}>Create Task</button>
+              <button onClick={createNewTask}>Create Task</button>
             </div>
           </dialog>
         </div>

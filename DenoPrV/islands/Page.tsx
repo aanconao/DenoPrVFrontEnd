@@ -1,21 +1,13 @@
 import { FunctionComponent } from "preact";
+import { useState } from "preact/hooks";
 import FormButtonComponent from "../components/FormButtonComponent.tsx";
+import { Task, TaskStates } from "../Types.ts";
 
 const Page: FunctionComponent = () => {
-  const showInformation = () => {
-    return (
-      <>
-        <ul>
-          <li>({})</li>
-        </ul>
-      </>
-    );
-  };
-
   return (
     <div class="boxPage">
       <div class="buttonForm">
-        <FormButtonComponent />
+        <FormButtonComponent propTask={(newTask: Task) => {}} />
       </div>
       <div class="spaceBtwColumns">
         <div class="column">

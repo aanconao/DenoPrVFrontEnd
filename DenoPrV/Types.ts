@@ -1,11 +1,15 @@
-export type Create_Task = {
+export type Task = {
   nameTask: string;
-  states: States;
+  states: TaskStates;
 };
 
+export enum TaskStates {
+  TO_DO = "To Do",
+  IN_PROGRESS = "In Progress",
+  IN_REVIEW = "In Review",
+  DONE = "Done",
+}
+
 export type States = {
-  To_Do: string[];
-  In_Progress: string[];
-  In_Review: string[];
-  Done: string[];
+  task: Task[];
 };
